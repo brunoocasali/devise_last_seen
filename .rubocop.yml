@@ -1,0 +1,30 @@
+require:
+  - rubocop-rspec
+  - rubocop-rake
+
+Style/Documentation:
+  Enabled: false
+
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
+AllCops:
+  NewCops: enable
+  SuggestExtensions: false
+  TargetRubyVersion: 2.7
+  Exclude:
+    - "Gemfile.lock"
+    - "bin/**/*"
+    - "spec/dummy/**/*"
+    - "tmp/**/*"
+
+Gemspec/RequiredRubyVersion:
+  Enabled: false
+
+Metrics/BlockLength:
+  Exclude:
+    - "spec/**/*"
+
+RSpec/DescribeClass:
+  Enabled: false
+
