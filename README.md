@@ -31,6 +31,24 @@ class User < ApplicationRecord
 end
 ```
 
+## Configuration
+
+Besides the column requirement you don't need customizations, but if you want to...
+
+```rb
+# config/initializers/devise.rb
+
+Devise.setup do |config|
+  ...
+
+  # Interval (in seconds) to update the :last_seen_at_attribute attr
+  # config.last_seen_at_interval = 5.minutes
+
+  # Attribute who will be updated every time a user is set by the Warden's after_save callback
+  # config.last_seen_at_attribute = :last_seen
+end
+```
+
 ## Development
 
 After checking out the repo, run `bin/setup` to install dependencies. Then, run `bundle exec rspec` to run the tests. 
