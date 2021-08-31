@@ -41,3 +41,9 @@ The gem is available as open source under the terms of the [MIT License](https:/
 ## Code of Conduct
 
 Everyone interacting in the Devise::LastSeen project’s codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/[USERNAME]/devise_last_seen/blob/master/CODE_OF_CONDUCT.md).
+
+
+<!-- https://github.com/devise-security/devise-security -->
+<!-- https://github.com/heartcombo/devise -->
+<!-- https://github.com/ctide/devise_lastseenable -->
+<!-- https://github.com/iplan/iplan-devise-lastseenable -->

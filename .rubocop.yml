@@ -17,6 +17,7 @@ AllCops:
     - "bin/**/*"
     - "spec/dummy/**/*"
     - "tmp/**/*"
+    - "vendor/**/*"
 
 Gemspec/RequiredRubyVersion:
   Enabled: false

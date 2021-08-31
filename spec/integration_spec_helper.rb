@@ -3,7 +3,9 @@ require 'spec_helper'
 ENV['RAILS_ENV'] ||= 'test'
 require File.expand_path('dummy/config/environment.rb', __dir__)
 
+require 'migration_helper'
 require 'rspec/rails'
+require 'database_cleaner'
 
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 RSpec.configure do |config|
@@ -14,11 +16,18 @@ RSpec.configure do |config|
 
   config.use_transactional_examples = true
 
-  # Run specs in random order to surface order dependencies. If you find an
-  # order dependency and want to debug it, you can fix the order by providing
-  # the seed, which is printed after each run.
-  #     --seed 1234
-  config.order = 'random'
+  config.before(:suite) do
+    DatabaseCleaner.strategy = :transaction
+    DatabaseCleaner.clean_with(:truncation)
+  end
+
+  config.around do |example|
+    DatabaseCleaner.cleaning do
+      example.run
+    end
+  ensure
+    DatabaseCleaner.clean
+  end
 
   config.before do
     Warden.test_mode!
@@ -28,5 +37,3 @@ RSpec.configure do |config|
     Warden.test_reset!
   end
 end
-
-Dir["#{Dir.pwd}/spec/support/**/*.rb"].sort.each { |f| require f }

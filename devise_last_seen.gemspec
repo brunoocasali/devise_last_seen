@@ -22,14 +22,8 @@ Gem::Specification.new do |spec|
   spec.add_dependency 'activerecord'
   spec.add_dependency 'devise'
 
-  spec.add_development_dependency 'rails'
-  spec.add_development_dependency 'sqlite3'
-
   spec.add_development_dependency 'bundler', '~> 2.1'
-  spec.add_development_dependency 'rack-test', '~> 1'
   spec.add_development_dependency 'rake', '~> 13'
-  spec.add_development_dependency 'rspec-rails', '~> 5'
-
   spec.add_development_dependency 'rspec', '~> 3.10'
   spec.add_development_dependency 'rubocop'
   spec.add_development_dependency 'rubocop-rake'
