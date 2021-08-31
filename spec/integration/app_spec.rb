@@ -38,4 +38,23 @@ RSpec.describe 'Dummy app', type: :feature do
       end.not_to change(user, :persisted?)
     end
   end
+
+  context 'with different configuration' do
+    let(:user) { User.create(email: email, password: password, name: name, last_seen: 10.minutes.ago) }
+
+    before do
+      Devise.setup { |c| c.last_seen_at_interval = 1.hour }
+    end
+
+    after do
+      Devise.setup { |c| c.last_seen_at_interval = 5.minutes }
+    end
+
+    it 'does not changes the user last_seen_at_attribute' do
+      expect do
+        login_as(user)
+        get user_session_path
+      end.not_to change(user.reload, :last_seen)
+    end
+  end
 end

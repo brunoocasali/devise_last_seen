@@ -33,14 +33,30 @@ RSpec.describe 'Devise model extension' do
       expect(model.last_seen).to be_within(1.second).of DateTime.now
     end
 
-    context 'when time passed is lower than 5 minutes' do
-      let(:time) { 3.minutes.ago }
+    context 'when time passed is lower than the interval' do
+      let(:time) { (Devise.last_seen_at_interval - 2.minutes).ago }
 
       it 'does not change last_seen value' do
         model.last_seen = time
         model.track_last_seen!
 
         expect(model.last_seen).to eq(time)
+      end
+    end
+
+    context 'when resource class does not have the defined attribute writer' do
+      before do
+        Devise.setup { |c| c.last_seen_at_attribute = :alfa }
+      end
+
+      after do
+        Devise.setup { |c| c.last_seen_at_attribute = :last_seen }
+      end
+
+      it 'does not change last_seen_at_attribute value' do
+        expect do
+          model.track_last_seen!
+        end.not_to(change { model.try(:alfa) })
       end
     end
   end

@@ -3,11 +3,16 @@ module Devise
     module Lastseenable
       def track_last_seen!
         return if new_record?
-        return unless last_seen.to_i < (Time.now - 5.minutes).to_i
+        return unless respond_to?(last_seen_at_attribute_writer)
+        return unless last_seen.to_i < (Time.now - Devise.last_seen_at_interval).to_i
 
-        self.last_seen = DateTime.now
+        public_send(last_seen_at_attribute_writer, DateTime.now)
 
         save(validate: false)
+      end
+
+      def last_seen_at_attribute_writer
+        @last_seen_at_attribute_writer ||= :"#{Devise.last_seen_at_attribute}="
       end
     end
   end
