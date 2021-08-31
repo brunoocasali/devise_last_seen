@@ -6,6 +6,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.2.0] - 2021-08-31
+### Added
+- Add `Devise.last_seen_at_interval` option to allow customization of the interval
+- Add `Devise.last_seen_at_attribute` option to allow customization of the attribute name
+
 ## [0.1.0] - 2021-08-31
 ### Added
 - Basic feature that updates a pre-existent timestamp column after warden set_user. 
