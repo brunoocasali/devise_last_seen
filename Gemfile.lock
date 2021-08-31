@@ -72,6 +72,12 @@ GEM
     builder (3.2.4)
     concurrent-ruby (1.1.9)
     crass (1.0.6)
+    database_cleaner (2.0.1)
+      database_cleaner-active_record (~> 2.0.0)
+    database_cleaner-active_record (2.0.1)
+      activerecord (>= 5.a)
+      database_cleaner-core (~> 2.0.0)
+    database_cleaner-core (2.0.1)
     devise (4.8.0)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
@@ -201,16 +207,17 @@ PLATFORMS
 
 DEPENDENCIES
   bundler (~> 2.1)
+  database_cleaner
   devise_last_seen!
-  rack-test (~> 1)
-  rails
+  rack-test
+  rails (~> 6.1)
   rake (~> 13)
   rspec (~> 3.10)
-  rspec-rails (~> 5)
+  rspec-rails
   rubocop
   rubocop-rake
   rubocop-rspec
-  sqlite3
+  sqlite3 (~> 1.4)
 
 BUNDLED WITH
    2.1.4
