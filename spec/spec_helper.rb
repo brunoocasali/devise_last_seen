@@ -4,7 +4,10 @@ if ENV['CC_TEST_REPORTER_ID'] || ENV['COVERAGE']
   begin
     require 'simplecov'
 
-    SimpleCov.start
+    SimpleCov.start do
+      add_filter 'dummy'
+      add_filter 'spec'
+    end
   rescue LoadError
     puts 'simplecov was not loaded, are you in CI? Check out the gem.yml config'
     puts 'we will only run coverage for latest ruby and rails versions ;)'
