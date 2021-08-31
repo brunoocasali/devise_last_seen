@@ -4,6 +4,8 @@ This devise extension, will ensure that devise will update a flag/timestamp on t
 With this kind of feature you could show in your views something like **last seen 3 weeks ago** or **last seen 2 minutes ago**.
 
 [![ruby gem](https://github.com/brunoocasali/devise_last_seen/actions/workflows/gem.yml/badge.svg)](https://github.com/brunoocasali/devise_last_seen/actions/workflows/gem.yml)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/056e2b80cbcdb5d7b402/test_coverage)](https://codeclimate.com/github/brunoocasali/devise_last_seen/test_coverage)
+[![Maintainability](https://api.codeclimate.com/v1/badges/056e2b80cbcdb5d7b402/maintainability)](https://codeclimate.com/github/brunoocasali/devise_last_seen/maintainability)
 
 ## Installation
 
