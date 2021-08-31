@@ -10,6 +10,10 @@ class Resource
 
   attr_accessor :last_seen
 
+  def new_record?
+    false
+  end
+
   def save(validate: nil)
     validate
   end

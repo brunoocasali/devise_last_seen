@@ -5,7 +5,8 @@ RSpec.describe 'Dummy app', type: :feature do
 
   let(:password) { SecureRandom.hex(20) }
   let(:email) { 'abc@abc.com' }
-  let(:user) { User.create(email: email, password: password) }
+  let(:name) { 'chuck norris' }
+  let(:user) { User.create(email: email, password: password, name: name) }
 
   def app
     Rails.application
@@ -25,5 +26,16 @@ RSpec.describe 'Dummy app', type: :feature do
     get user_session_path
 
     expect(user).to have_received(:track_last_seen!)
+  end
+
+  context 'when user is not in a valid state' do
+    let(:user) { User.new(email: email, password: password, name: nil) }
+
+    it 'does not saves the user' do
+      expect do
+        login_as(user)
+        get user_session_path
+      end.not_to change(user, :persisted?)
+    end
   end
 end
