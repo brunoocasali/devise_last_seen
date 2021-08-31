@@ -26,6 +26,7 @@ jobs:
     runs-on: ubuntu-latest
     env: # $BUNDLE_GEMFILE must be set at the job level, so it is set for all steps
       BUNDLE_GEMFILE: ${{ matrix.gemfile }}
+      CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
     steps:
       - uses: actions/checkout@v2
 
@@ -40,3 +41,7 @@ jobs:
 
       - name: Run tests
         run: bundle exec rspec
+
+      - name: Publish code coverage
+        uses: paambaati/codeclimate-action@v2.7.5 # Locking to specific version b/c: https://github.com/paambaati/codeclimate-action/issues/142
+        if: matrix.ruby == '3.0' && matrix.gemfile == 'Gemfile'

@@ -1,4 +1,16 @@
 require 'bundler/setup'
+
+if ENV['CC_TEST_REPORTER_ID'] || ENV['COVERAGE']
+  begin
+    require 'simplecov'
+
+    SimpleCov.start
+  rescue LoadError
+    puts 'simplecov was not loaded, are you in CI? Check out the gem.yml config'
+    puts 'we will only run coverage for latest ruby and rails versions ;)'
+  end
+end
+
 require 'devise_last_seen'
 require 'rack/test'
 

@@ -9,6 +9,7 @@ group :test do
   gem 'database_cleaner'
   gem 'rack-test'
   gem 'rspec-rails'
+  gem 'simplecov'
 end
 
 platforms :ruby do
