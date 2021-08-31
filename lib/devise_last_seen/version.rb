@@ -1,5 +1,3 @@
-module Devise
-  module LastSeen
-    VERSION = "0.1.0"
-  end
+module DeviseLastSeen
+  VERSION = '0.1.0'.freeze
 end
