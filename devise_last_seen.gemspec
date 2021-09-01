@@ -19,7 +19,6 @@ Gem::Specification.new do |spec|
   spec.files = Dir['{app,config,lib}/**/*', 'CHANGELOG.md', 'LICENSE.txt', 'README.md']
   spec.require_paths = ['lib']
 
-  spec.add_dependency 'activerecord'
   spec.add_dependency 'devise'
 
   spec.add_development_dependency 'bundler', '~> 2.1'

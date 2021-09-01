@@ -2,7 +2,6 @@ PATH
   remote: .
   specs:
     devise_last_seen (0.2.0)
-      activerecord
       devise
 
 GEM
