@@ -31,6 +31,18 @@ class User < ApplicationRecord
 end
 ```
 
+Generate a rails migration to add the column to your devise model:
+
+```rb
+bundle exec rails g migration add_last_seen_to_users last_seen:datetime
+
+class AddLastSeenToUsers < ActiveRecord::Migration[6.1]
+  def change
+    add_column :users, :last_seen, :datetime
+  end
+end
+```
+
 ## Configuration
 
 Besides the column requirement you don't need customizations, but if you want to...
@@ -45,6 +57,7 @@ Devise.setup do |config|
   # config.last_seen_at_interval = 5.minutes
 
   # Attribute who will be updated every time a user is set by the Warden's after_save callback
+  # Remember to check if this column name is present on the devise model table.
   # config.last_seen_at_attribute = :last_seen
 end
 ```
