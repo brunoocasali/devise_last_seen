@@ -33,9 +33,11 @@ end
 
 Generate a rails migration to add the column to your devise model:
 
-```rb
+```
 bundle exec rails g migration add_last_seen_to_users last_seen:datetime
+```
 
+```rb
 class AddLastSeenToUsers < ActiveRecord::Migration[6.1]
   def change
     add_column :users, :last_seen, :datetime
