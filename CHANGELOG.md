@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.2.1] - 2021-09-01
+### Removed
+- Remove `activerecord` from gemspec, this gem was added but are not used in the gem context. 
+
 ## [0.2.0] - 2021-08-31
 ### Added
 - Add `Devise.last_seen_at_interval` option to allow customization of the interval
