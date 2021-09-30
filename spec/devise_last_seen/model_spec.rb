@@ -37,7 +37,6 @@ class ResourceNonDefaultAttribute
   end
 end
 
-
 RSpec.describe 'Devise model extension' do
   subject(:model) { Resource.new }
 
@@ -80,31 +79,31 @@ RSpec.describe 'Devise model extension' do
     end
   end
 
-  context "non default attribute" do
+  context 'with non default attribute' do
     subject(:model) { ResourceNonDefaultAttribute.new }
+
     before { Devise.setup { |c| c.last_seen_at_attribute = :last_seen_at } }
+
     after { Devise.setup { |c| c.last_seen_at_attribute = :last_seen } }
 
-    describe '#track_last_seen!' do
-      it 'calls save disabling validations' do
-        expect(model.track_last_seen!).to eq(false)
-      end
+    it 'calls save disabling validations' do
+      expect(model.track_last_seen!).to eq(false)
+    end
 
-      it 'assigns the current time to last_seen field' do
+    it 'assigns the current time to last_seen field' do
+      model.track_last_seen!
+
+      expect(model.last_seen_at).to be_within(1.second).of DateTime.now
+    end
+
+    context 'when time passed is lower than the interval' do
+      let(:time) { (Devise.last_seen_at_interval - 2.minutes).ago }
+
+      it 'does not change last_seen value' do
+        model.last_seen_at = time
         model.track_last_seen!
 
-        expect(model.last_seen_at).to be_within(1.second).of DateTime.now
-      end
-
-      context 'when time passed is lower than the interval' do
-        let(:time) { (Devise.last_seen_at_interval - 2.minutes).ago }
-
-        it 'does not change last_seen value' do
-          model.last_seen_at = time
-          model.track_last_seen!
-
-          expect(model.last_seen_at).to eq(time)
-        end
+        expect(model.last_seen_at).to eq(time)
       end
     end
   end
