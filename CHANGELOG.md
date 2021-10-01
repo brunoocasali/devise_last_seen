@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.2.2] - 2021-10-01
+### Fixed
+- Fix usage of non-default attribute names in devise last seen configuration [#10](https://github.com/brunoocasali/devise_last_seen/pull/10).
+
 ## [0.2.1] - 2021-09-01
 ### Removed
 - Remove `activerecord` from gemspec, this gem was added but are not used in the gem context. 
