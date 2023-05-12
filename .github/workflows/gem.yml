@@ -34,7 +34,12 @@ jobs:
 
       - name: Run tests
         run: bundle exec rspec
+        # not needed because it will run using the codeclimate action
+        if: matrix.ruby != '3.0' && matrix.gemfile != 'Gemfile'
+
 
       - name: Publish code coverage
-        uses: paambaati/codeclimate-action@v2.7.5 # Locking to specific version b/c: https://github.com/paambaati/codeclimate-action/issues/142
+        uses: paambaati/codeclimate-action@v4.0.0
+        with:
+          coverageCommand: bundle exec rspec
         if: matrix.ruby == '3.0' && matrix.gemfile == 'Gemfile'
