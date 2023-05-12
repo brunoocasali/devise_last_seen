@@ -15,3 +15,12 @@ end
 platforms :ruby do
   gem 'sqlite3', '~> 1.4'
 end
+
+group :development do
+  gem 'bundler', '~> 2.1'
+  gem 'rake', '~> 13'
+  gem 'rspec', '~> 3.10'
+  gem 'rubocop'
+  gem 'rubocop-rake'
+  gem 'rubocop-rspec'
+end
