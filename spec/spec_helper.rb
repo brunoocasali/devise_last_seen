@@ -6,10 +6,13 @@ if ENV['COVERAGE'] == 'true'
     require 'simplecov_json_formatter'
 
     SimpleCov.start do
-      formatter SimpleCov::Formatter::MultiFormatter.new([
-        SimpleCov::Formatter::JSONFormatter,
-        SimpleCov::Formatter::HTMLFormatter
-      ])
+      formatter SimpleCov::Formatter::MultiFormatter.new(
+        [
+          SimpleCov::Formatter::JSONFormatter,
+          SimpleCov::Formatter::HTMLFormatter
+        ]
+      )
+
       add_filter 'dummy'
       add_filter 'spec'
     end
