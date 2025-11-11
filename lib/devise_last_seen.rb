@@ -1,6 +1,7 @@
 require 'devise'
 require 'devise_last_seen/model'
 require 'devise_last_seen/hook'
+require 'devise_last_seen/controller'
 
 module Devise
   # Interval (in seconds) to update the :last_seen_at_attribute attr
