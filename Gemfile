@@ -3,17 +3,16 @@ source 'https://rubygems.org'
 # Specify your gem's dependencies in devise_last_seen.gemspec
 gemspec
 
-gem 'rails', '~> 6.1'
+gem "rails", '~> 7.0'
 
 group :test do
-  gem 'database_cleaner'
-  gem 'rack-test'
-  gem 'rspec-rails'
-  gem 'simplecov'
+  gem "rack-test"
+  gem "rspec-rails"
+  gem "database_cleaner"
 end
 
 platforms :ruby do
-  gem 'sqlite3', '~> 1.4'
+  gem "sqlite3", "~> 2.8"
 end
 
 group :development do
