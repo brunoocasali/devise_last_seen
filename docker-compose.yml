@@ -1,11 +1,9 @@
-version: "3.8"
-
 volumes:
   bundle:
 
 services:
   package:
-    image: ruby:3.0
+    image: ruby:3.4
     tty: true
     stdin_open: true
     working_dir: /home/package

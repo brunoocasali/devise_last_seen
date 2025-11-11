@@ -42,7 +42,7 @@ RSpec.describe 'Devise model extension' do
 
   describe '#track_last_seen!' do
     it 'calls save disabling validations' do
-      expect(model.track_last_seen!).to eq(false)
+      expect(model.track_last_seen!).to be(false)
     end
 
     it 'assigns the current time to last_seen field' do
@@ -87,7 +87,7 @@ RSpec.describe 'Devise model extension' do
     after { Devise.setup { |c| c.last_seen_at_attribute = :last_seen } }
 
     it 'calls save disabling validations' do
-      expect(model.track_last_seen!).to eq(false)
+      expect(model.track_last_seen!).to be(false)
     end
 
     it 'assigns the current time to last_seen field' do

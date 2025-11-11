@@ -1,26 +1,31 @@
 name: ruby gem
 on: [push]
 
+permissions:
+  actions: write
+  contents: read
+
 jobs:
   test:
+    permissions:
+      id-token: write
     strategy:
       fail-fast: false
       matrix:
         gemfile:
           - Gemfile
-          - gemfiles/Gemfile-rails-6-1
-          - gemfiles/Gemfile-rails-7-0
+          - gemfiles/Gemfile-rails-7-1
+          - gemfiles/Gemfile-rails-7-2
+          - gemfiles/Gemfile-rails-8-0
+          - gemfiles/Gemfile-rails-8-1
         ruby:
-          - 2.7
-          - 3.0
-          - 3.1
-          - 3.2
+          - 3.4
     runs-on: ubuntu-latest
     env: # $BUNDLE_GEMFILE must be set at the job level, so it is set for all steps
       BUNDLE_GEMFILE: ${{ matrix.gemfile }}
-      CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
+      COVERAGE: true
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v5
 
       - uses: ruby/setup-ruby@v1
         with:
@@ -29,17 +34,13 @@ jobs:
           bundler: ${{ env.BUNDLER_VERSION || 'latest' }}
 
       - name: Run rubocop
-        run: bundle exec rubocop # runs only in older ruby version
-        if: matrix.ruby == '2.7' && matrix.gemfile == 'Gemfile'
+        run: bundle exec rubocop
 
       - name: Run tests
         run: bundle exec rspec
-        # not needed because it will run using the codeclimate action
-        if: matrix.ruby != '3.0' && matrix.gemfile != 'Gemfile'
-
 
       - name: Publish code coverage
-        uses: paambaati/codeclimate-action@v4.0.0
+        uses: qltysh/qlty-action/coverage@v2
         with:
-          coverageCommand: bundle exec rspec
-        if: matrix.ruby == '3.0' && matrix.gemfile == 'Gemfile'
+          oidc: true
+          files: coverage/coverage.json
