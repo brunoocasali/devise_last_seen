@@ -8,6 +8,8 @@ group :test do
   gem "rack-test"
   gem "rspec-rails"
   gem "database_cleaner"
+  gem 'simplecov', require: false
+  gem 'simplecov_json_formatter', require: false
 end
 
 platforms :ruby do

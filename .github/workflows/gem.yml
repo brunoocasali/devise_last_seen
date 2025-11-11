@@ -36,4 +36,5 @@ jobs:
       - name: Publish code coverage
         uses: qltysh/qlty-action/coverage@v2
         with:
-          coverageCommand: bundle exec rspec
+          oidc: true
+          files: coverage/coverage.json
