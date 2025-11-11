@@ -66,6 +66,17 @@ Devise.setup do |config|
 end
 ```
 
+:warning: for JWT users or folks that does not rely on Devise/Warden's storage. You must manually include the concern
+to your controller like this.
+
+```rb
+class MyApplicationController < ApplicationController
+  # This will add `after_action :track_last_seen` to ensure all of your authenticated models with the lastseenable will 
+  # be touched.
+  include DeviseLastSeen::Controllers
+end
+```
+
 ## Development
 
 After checking out the repo, run `bin/setup` to install dependencies. Then, run `bundle exec rspec` to run the tests. 

@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.3.0] - 2025-11-11
+### Added
+- Add a new way to trigger the callback, useful when Warden's callbacks are not available [#16](https://github.com/brunoocasali/devise_last_seen/pull/16)
+
 ## [0.2.2] - 2021-10-01
 ### Fixed
 - Fix usage of non-default attribute names in devise last seen configuration [#10](https://github.com/brunoocasali/devise_last_seen/pull/10).

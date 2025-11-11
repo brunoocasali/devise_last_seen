@@ -39,7 +39,7 @@ RSpec.describe 'Dummy app', type: :feature do
     end
   end
 
-  context 'with different configuration' do
+  context 'with different interval configuration' do
     let(:user) { User.create(email: email, password: password, name: name, last_seen: 10.minutes.ago) }
 
     before do
@@ -55,6 +55,29 @@ RSpec.describe 'Dummy app', type: :feature do
         login_as(user)
         get user_session_path
       end.not_to change(user.reload, :last_seen)
+    end
+  end
+
+  context 'when warden is not available' do
+    it 'tracks last seen by controller' do
+      allow(User).to receive(:find).and_return(user)
+      allow(user).to receive(:track_last_seen!).and_call_original
+
+      login_as(user)
+      get products_path
+
+      expect(user).to have_received(:track_last_seen!).exactly(2).times
+    end
+  end
+
+  context 'when devise_last_seen is not activated' do
+    let(:admin) { Admin.create(email: email, password: password) }
+
+    it 'does not track last seen' do
+      login_as(admin)
+      get products_path
+
+      expect(admin.reload.last_seen).to be_nil
     end
   end
 end
