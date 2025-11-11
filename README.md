@@ -7,9 +7,11 @@ With this kind of feature you could show in your views something like **last see
 [![Test Coverage](https://api.codeclimate.com/v1/badges/056e2b80cbcdb5d7b402/test_coverage)](https://codeclimate.com/github/brunoocasali/devise_last_seen/test_coverage)
 [![Maintainability](https://api.codeclimate.com/v1/badges/056e2b80cbcdb5d7b402/maintainability)](https://codeclimate.com/github/brunoocasali/devise_last_seen/maintainability)
 
+:warning: We support officially Rails >= 7.0 and Ruby > 3.4. But the minimum required Ruby version is 2.1 (from gemspec), so this gem probably works in older Rails v5.
+
 ## Installation
 
-You know, add this line to your application's Gemfile:
+You know the drill, add this line to your application's Gemfile:
 
 ```ruby
 gem 'devise_last_seen'

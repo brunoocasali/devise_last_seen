@@ -11,8 +11,8 @@ jobs:
           - gemfiles/Gemfile-rails-7-1
           - gemfiles/Gemfile-rails-7-2
           - gemfiles/Gemfile-rails-8-0
+          - gemfiles/Gemfile-rails-8-1
         ruby:
-          - 3.0
           - 3.4
     runs-on: ubuntu-latest
     env: # $BUNDLE_GEMFILE must be set at the job level, so it is set for all steps
@@ -28,17 +28,12 @@ jobs:
           bundler: ${{ env.BUNDLER_VERSION || 'latest' }}
 
       - name: Run rubocop
-        run: bundle exec rubocop # runs only in older ruby version
-        if: matrix.ruby == '3.0' && matrix.gemfile == 'Gemfile'
+        run: bundle exec rubocop
 
       - name: Run tests
         run: bundle exec rspec
-        # not needed because it will run using the codeclimate action
-        if: matrix.ruby != '3.4' && matrix.gemfile != 'Gemfile'
-
 
       - name: Publish code coverage
         uses: qltysh/qlty-action/coverage@v2
         with:
           coverageCommand: bundle exec rspec
-        if: matrix.ruby == '3.4' && matrix.gemfile == 'Gemfile'
