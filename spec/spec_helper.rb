@@ -1,6 +1,6 @@
 require 'bundler/setup'
 
-if ENV['CC_TEST_REPORTER_ID'] || ENV['COVERAGE']
+if ENV['COVERAGE'] == 'true'
   begin
     require 'simplecov'
 
