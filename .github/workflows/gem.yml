@@ -1,8 +1,14 @@
 name: ruby gem
 on: [push]
 
+permissions:
+  actions: write
+  contents: read
+
 jobs:
   test:
+    permissions:
+      id-token: write
     strategy:
       fail-fast: false
       matrix:
